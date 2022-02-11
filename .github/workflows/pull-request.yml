@@ -16,7 +16,7 @@ jobs:
     uses: alice-biometrics/actions/.github/workflows/lume-ci.yml@main
     with:
       language: python
-      post_commands: test-property, test:e2e-local
+      post_commands: test-property,test:e2e-local
     secrets:
       github_access_token: ${{ secrets.ALICE_GITHUB_ACCESS_TOKEN }}
       gke_project: ${{ secrets.GKE_PROJECT_STAGING }}

@@ -29,11 +29,11 @@ class TestTaskDeleter:
         result = task_deleter.execute(self.aggregate_id)
         assert_success(result)
 
-        self.mock_respository.remove.assert_called_once()
+        self.mock_repository.remove.assert_called_once()
         self.mock_domain_event_bus.publish.assert_called_once()
 
     def should_failure_when_repository_fails(self):
-        self.mock_respository.remove = Mock(return_value=isFailure)
+        self.mock_repository.remove = Mock(return_value=isFailure)
 
         task_deleter = TaskDeleter(
             repository=self.mock_repository,
@@ -43,5 +43,5 @@ class TestTaskDeleter:
         result = task_deleter.execute(self.aggregate_id)
         assert_failure(result)
 
-        self.mock_respository.remove.assert_called_once()
+        self.mock_repository.remove.assert_called_once()
         self.mock_domain_event_bus.publish.assert_not_called()

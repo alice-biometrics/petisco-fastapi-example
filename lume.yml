@@ -1,9 +1,5 @@
 name: petisco-fastapi-example
 
-required_env:
-  GITHUB_ACCESS_TOKEN: Required to download private python packages.
-  GOOGLE_APPLICATION_CREDENTIALS: Required to download and setup from google storage.
-
 install:
   run:
   - pip install -U -r requirements/dev-requirements.txt -r requirements/requirements.txt

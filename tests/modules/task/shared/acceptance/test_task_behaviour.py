@@ -21,7 +21,8 @@ class TestTaskBehaviour:
         assert_http(response, 200)
         payload = response.json()
         payload.pop("created_at")
-        payload.pop("labels")
+        labels = payload.pop("labels")
+        assert labels == ["small"]
         assert payload == task_json
 
         task_json["name"] = "New name"

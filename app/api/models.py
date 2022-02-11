@@ -36,5 +36,5 @@ class TaskOut(BaseModel):
             description=task.description,
             id=UUID(task.aggregate_id.value),
             created_at=task.created_at,
-            labels=[],
+            labels=task.labels,
         )

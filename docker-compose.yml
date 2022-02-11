@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+
+  petisco-fastapi-example:
+    build:
+      context: ${PWD}
+      dockerfile: docker/Dockerfile
+    image: petisco-fastapi-example
+    restart: on-failure
+    environment:
+      - PETISCO_NOTIFIER_TYPE
+      - PETISCO_DOMAIN_EVENT_BUS_TYPE
+      - TASK_REPOSITORY_TYPE
+    #volumes:
+    # - folder_task_database:/folder_task_database
+    ports:
+      - 8080:4000
+    depends_on:
+      - rabbitmq
+    links:
+      - rabbitmq
+
+  rabbitmq:
+    image: rabbitmq:3.8-management
+    container_name: rabbitmq-face
+    ports:
+      - 5672:5672
+      - 15672:15672
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:15672"]
+      interval: 30s
+      timeout: 10s
+      retries: 5

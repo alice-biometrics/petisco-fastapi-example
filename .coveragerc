@@ -1,0 +1,5 @@
+[run]
+omit = ./venv/*,*tests*,*__init__.py,./app/main.py,./app/application.py
+
+[report]
+exclude_lines = raise NotImplementedError

@@ -1,0 +1,8 @@
+ARG IMAGE
+FROM ${IMAGE}:latest
+
+ARG TAG
+ARG BUILD_TIMESTAMP
+
+RUN echo ${TAG} > /app/app/VERSION
+RUN echo ${BUILD_TIMESTAMP} > /app/app/DEPLOY

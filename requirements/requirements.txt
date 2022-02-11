@@ -1,0 +1,2 @@
+petisco[fastapi,sqlalchemy,elastic,rabbitmq,slack,redis]==1.6.0
+uvicorn==0.17.1

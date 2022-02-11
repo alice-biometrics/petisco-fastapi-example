@@ -1,0 +1,27 @@
+steps:
+  e2e-local:
+    envs:
+      END2END_TEST: True
+    envs_file: env.fake.yml
+    setup:
+      - docker-compose build
+      - docker-compose up -d
+    wait_http_200: http://localhost:8080/healthcheck
+    run: pytest -c pytest.end2end.ini --variables tests/end2end/envs/local.yml
+    teardown:
+      - docker-compose logs petisco-fastapi-example > face.docker.compose.log
+      - docker-compose down
+      - docker-compose ps
+  e2e-staging:
+    envs:
+      END2END_TEST: True
+    run:
+      - pytest -c pytest.end2end.ini --variables tests/end2end/envs/staging.yml
+  e2e-production:
+    envs:
+      END2END_TEST: True
+    run:
+      - pytest -c pytest.end2end.ini --variables tests/end2end/envs/production.yml
+
+
+

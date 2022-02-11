@@ -1,0 +1,29 @@
+steps:
+  build:
+    run: docker build -t petisco-fastapi-example -f docker/Dockerfile .
+  up:
+    run: docker run --name petisco-fastapi-example petisco-fastapi-example
+  compose-up:
+    envs_file: env.yml
+    run: docker-compose -f docker-compose.yml up -d
+  compose-check:
+    envs:
+      END2END_TEST: True
+    envs_file: env.yml
+    setup: docker-compose up -d
+    wait_http_200: http://0.0.0.0:8080/healthcheck
+    run: echo "Checking docker-compose.yml"
+    teardown:
+      - docker-compose down
+      - docker-compose ps
+  check-size:
+    run: |
+      docker run --rm -it \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -v  "$(pwd)":"$(pwd)" \
+            -w "$(pwd)" \
+            -v "$HOME/.dive.yaml":"$HOME/.dive.yaml" \
+            wagoodman/dive:latest build --no-cache -t petisco-fastapi-example -f docker/Dockerfile .
+
+
+

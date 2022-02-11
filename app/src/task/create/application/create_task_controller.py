@@ -9,6 +9,7 @@ from app.src.task.shared.domain.task import Task
 class CreateTaskController(FastAPIController):
     def execute(self, task: Task) -> BoolResult:
         task_creator = TaskCreator(
+            labeler=Container.get("task_labeler"),
             repository=Container.get("task_repository"),
             domain_event_bus=Container.get("domain_event_bus"),
         )

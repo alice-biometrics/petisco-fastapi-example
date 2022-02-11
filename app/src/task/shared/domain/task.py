@@ -12,6 +12,7 @@ class Task(AggregateRoot):
     name: constr(max_length=50)
     description: constr(max_length=200)
     created_at: Optional[datetime] = None
+    labels: Optional[list[str]] = list()
 
     @validator("aggregate_id", pre=True, always=True)
     def set_aggregate_id(cls, v):

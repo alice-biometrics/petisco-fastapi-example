@@ -1,4 +1,5 @@
-# petisco-fastapi-example 🍪 [![Pull Request (CI)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/pull-request.yml/badge.svg)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/pull-request.yml)
+# petisco-fastapi-example 🍪 [![Pull Request (CI)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/pull-request.yml/badge.svg)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/pull-request.yml) [![codecov](https://codecov.io/gh/alice-biometrics/petisco-fastapi-example/branch/main/graph/badge.svg?token=N5FKUF17GU)](https://codecov.io/gh/alice-biometrics/petisco-fastapi-example)
+
 
 <img src="https://github.com/alice-biometrics/custom-emojis/blob/master/images/alice_header.png?raw=true" width=auto>
 

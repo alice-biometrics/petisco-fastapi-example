@@ -1,5 +1,4 @@
-# petisco-fastapi-example 🍪
-[![Pull Request (CI)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/pull-request.yml/badge.svg)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/pull-request.yml) [![Merge - face - (Staging)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/merge.yml/badge.svg)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/merge.yml) [![Release - face - (Production)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/release.yml/badge.svg)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/release.yml) [![End2End Tests](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/end2end.yml/badge.svg)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/end2end.yml)
+# petisco-fastapi-example 🍪 [![Pull Request (CI)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/pull-request.yml/badge.svg)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/pull-request.yml)
 
 <img src="https://github.com/alice-biometrics/custom-emojis/blob/master/images/alice_header.png?raw=true" width=auto>
 

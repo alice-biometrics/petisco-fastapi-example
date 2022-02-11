@@ -45,6 +45,7 @@ Run the application in your computer with:
 |-----------------------|-------------------|
 | `(venv) $ lume -local:run` | `(venv) $ python -m uvicorn app.main:app --reload` |
 
+Try it and check documentation in [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
 👉 Check the [lume.local.yml](lume.local.yml) if you need to extend your local run command (e.g add some environment variables.)
 
@@ -58,10 +59,11 @@ Run the application in your computer with:
 
 #### Run
 
-| lume                        | docker                                                                    |
-|-----------------------------|---------------------------------------------------------------------------|
-| `(venv) $ lume -docker:run` | `(venv) $ docker run --name petisco-fastapi-example petisco-fastapi-example` |
+| lume                        | docker                                                                                |
+|-----------------------------|---------------------------------------------------------------------------------------|
+| `(venv) $ lume -docker:run` | `(venv) $ docker run -p 80:80 --name petisco-fastapi-example petisco-fastapi-example` |
 
+Try it and check documentation in [http://localhost:8000/docs](http://localhost:8000/docs)
 
 #### Use docker compose 
 
@@ -71,12 +73,11 @@ Use docker compose to run the service and its dependencies locally
 |--------------------------|---------------------------------------------------------------------------|
 | `(venv) $ lume -docker:compose-up` | `(venv) $ docker-compose -f docker-compose.yml up -d` |
 
+Try it and check documentation in [http://localhost:8000/docs](http://localhost:8000/docs)
 
 #### Check RabbitMQ <img src="https://github.com/alice-biometrics/custom-emojis/blob/master/images/rabbitmq.png" width="18">
 
-If you run docker compose, you can manage and check RabbitMQ queues using the following application:
-
-[http://localhost:15672/](http://localhost:15672/)
+If you run docker compose, you can manage and check RabbitMQ queues in [http://localhost:15672/](http://localhost:15672/).
 
 Credentials `guest:guest`
 

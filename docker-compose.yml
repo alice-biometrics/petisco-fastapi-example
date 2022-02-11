@@ -10,12 +10,12 @@ services:
     restart: on-failure
     environment:
       - PETISCO_NOTIFIER_TYPE
-      - PETISCO_DOMAIN_EVENT_BUS_TYPE
       - TASK_REPOSITORY_TYPE
-    #volumes:
-    # - folder_task_database:/folder_task_database
+      - RABBITMQ_HOST
+    volumes:
+     - ./folder_task_database:/app/folder_task_database
     ports:
-      - 8080:4000
+      - 80:80
     depends_on:
       - rabbitmq
     links:
@@ -32,3 +32,4 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+

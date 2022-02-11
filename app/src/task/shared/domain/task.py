@@ -5,7 +5,7 @@ from petisco import AggregateRoot, Uuid
 from pydantic.class_validators import validator
 from pydantic.types import constr
 
-from app.src.task.shared.domain.events import TaskCreated, TaskUpdated
+from app.src.task.shared.domain.events import TaskCreated
 
 
 class Task(AggregateRoot):
@@ -26,10 +26,4 @@ class Task(AggregateRoot):
     def create(name: str, description: str, aggregate_id: Optional[Uuid] = None):
         task = Task(name=name, description=description, aggregate_id=aggregate_id)
         task.record(TaskCreated())
-        return task
-
-    @staticmethod
-    def update(name: str, description: str, aggregate_id: Optional[Uuid] = None):
-        task = Task(name=name, description=description, aggregate_id=aggregate_id)
-        task.record(TaskUpdated())
         return task

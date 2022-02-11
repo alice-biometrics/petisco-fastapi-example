@@ -2,7 +2,7 @@ steps:
   run:
     envs:
       PETISCO_NOTIFIER_TYPE: not_implemented
-      #PETISCO_DOMAIN_EVENT_BUS_TYPE: not_implemented
+      PETISCO_DOMAIN_EVENT_BUS_TYPE: not_implemented
       SERVICES_TYPE: fake
     run: python -m uvicorn app.main:app --reload
 

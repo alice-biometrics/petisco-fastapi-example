@@ -1,5 +1,4 @@
-# petisco-fastapi-example 🍪
-[![Pull Request (CI)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/pull-request.yml/badge.svg)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/pull-request.yml) [![Merge - face - (Staging)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/merge.yml/badge.svg)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/merge.yml) [![Release - face - (Production)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/release.yml/badge.svg)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/release.yml) [![End2End Tests](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/end2end.yml/badge.svg)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/end2end.yml)
+# petisco-fastapi-example 🍪 [![Pull Request (CI)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/pull-request.yml/badge.svg)](https://github.com/alice-biometrics/petisco-fastapi-example/actions/workflows/pull-request.yml)
 
 <img src="https://github.com/alice-biometrics/custom-emojis/blob/master/images/alice_header.png?raw=true" width=auto>
 
@@ -80,7 +79,6 @@ If you run docker compose, you can manage and check RabbitMQ queues using the fo
 
 Credentials `guest:guest`
 
-
 ## Practice makes perfect 🤓
 
 This project is ideal for getting started on petisco and fastapi development using hexagonal architecture in Python. 
@@ -88,6 +86,8 @@ Let's start playing with this repo. Find here some exercises to extend this appl
 
 * Implement other TaskRepository using SQL, Redis, Elastic or whatever you like. 
 * Implement other TaskLabeler using a simple NPL model.
+* Implement more complex TaskLabeler with several labelers and publish additional events
+* Subscribe to events and perform model modifications
 
 Add your implementation to [dependencies.py](app/petisco/dependencies.py) and start playing with the project.
 

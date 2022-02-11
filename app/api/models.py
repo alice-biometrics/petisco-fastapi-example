@@ -15,7 +15,7 @@ class TaskIn(BaseModel):
     id: Optional[UUID] = None
 
     def to_task(self) -> Task:
-        return Task(
+        return Task.create(
             aggregate_id=Uuid(str(self.id)) if self.id else None,
             name=self.name,
             description=self.description,

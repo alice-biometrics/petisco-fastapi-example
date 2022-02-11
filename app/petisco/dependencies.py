@@ -13,8 +13,7 @@ from app.src.task.shared.infrastructure.folder_crud_repository import (
 
 
 def dependencies_provider() -> List[Dependency]:
-    repositories = []
-    app_services = [
+    repositories = [
         Dependency(
             name="task_repository",
             default_builder=Builder(InmemoryCrudRepository[Task]),
@@ -24,7 +23,9 @@ def dependencies_provider() -> List[Dependency]:
                     FolderTaskCrudRepository, folder="folder_task_database"
                 )
             },
-        ),
+        )
+    ]
+    app_services = [
         Dependency(
             name="task_labeler",
             default_builder=Builder(SizeTaskLabeler),

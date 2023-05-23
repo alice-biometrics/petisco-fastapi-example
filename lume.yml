@@ -22,7 +22,7 @@ steps:
     - flake8 app tests
     - isort --check .
   check-requirements:
-    run: safety check -r requirements/requirements.txt
+    run: pip-audit
   static-analysis:
     run: mypy app | true # now we can skip it
   coverage:

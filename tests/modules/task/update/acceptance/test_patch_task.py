@@ -12,7 +12,7 @@ class TestPatchTask:
     task: Task
     id: str
 
-    def setup(self):
+    def setup_method(self):
         self.task = TaskMother.any()
         self.id = self.task.aggregate_id.value
         TaskRepositoryMother.with_task(self.task)

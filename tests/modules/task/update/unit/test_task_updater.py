@@ -16,7 +16,7 @@ class TestTaskUpdater:
     mock_repository: Mock
     mock_domain_event_bus: Mock
 
-    def setup(self):
+    def setup_method(self):
         self.mock_labeler = Mock(TaskLabeler)
         self.mock_repository = Mock(CrudRepository)
         self.mock_domain_event_bus = Mock(DomainEventBus)

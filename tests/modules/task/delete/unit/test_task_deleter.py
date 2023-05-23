@@ -15,7 +15,7 @@ class TestTaskDeleter:
     mock_repository: Mock
     mock_domain_event_bus: Mock
 
-    def setup(self):
+    def setup_method(self):
         self.aggregate_id = UuidMother.any()
         self.mock_repository = Mock(CrudRepository)
         self.mock_domain_event_bus = Mock(DomainEventBus)

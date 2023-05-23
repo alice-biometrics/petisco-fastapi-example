@@ -7,7 +7,7 @@ from tests.mothers.task_repository_mother import TaskRepositoryMother
 
 @pytest.mark.acceptance
 class TestTaskBehaviour:
-    def setup(self):
+    def setup_method(self):
         TaskRepositoryMother.empty()
 
     def should_success_on_complete_task_execution(self, client_app):

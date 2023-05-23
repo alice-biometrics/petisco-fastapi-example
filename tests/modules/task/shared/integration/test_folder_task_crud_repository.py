@@ -14,11 +14,11 @@ class TestFolderTaskCrudRepository:
     repository: FolderTaskCrudRepository
     task: Task
 
-    def setup(self):
+    def setup_method(self):
         self.repository = FolderTaskCrudRepository("folder_task_database")
         self.aggregate_root = TaskMother.any()
 
-    def teardown(self):
+    def teardown_method(self):
         self.repository.clear()
 
     def _repository_with_aggregate_root(self):

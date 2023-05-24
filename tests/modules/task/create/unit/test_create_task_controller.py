@@ -7,7 +7,7 @@ from tests.mothers.task_repository_mother import TaskRepositoryMother
 
 @pytest.mark.unit
 class TestCreateTaskController:
-    def setup(self):
+    def setup_method(self):
         TaskRepositoryMother.empty()
 
     def should_construct_and_execute(self):

@@ -10,10 +10,10 @@ from tests.mothers.task_repository_mother import TaskRepositoryMother
 
 @pytest.mark.property
 class TestPropertyCreateTaskController:
-    def setup(self):
+    def setup_method(self):
         TaskRepositoryMother.empty()
 
-    def teardown(self):
+    def teardown_method(self):
         TaskRepositoryMother.empty()
 
     @given(st.text(), st.text())

@@ -13,7 +13,7 @@ from tests.mothers.uuid_mother import UuidMother
 
 @pytest.mark.unit
 class TestTaskRetriever:
-    def setup(self):
+    def setup_method(self):
         self.aggregate_id = UuidMother.any()
         self.mock_respository = Mock(CrudRepository)
         self.mock_respository.retrieve = Mock(return_value=Success(TaskMother.any()))

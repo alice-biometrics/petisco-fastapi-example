@@ -11,7 +11,7 @@ class TestPostTask:
     task: Task
     id: str
 
-    def setup(self):
+    def setup_method(self):
         TaskRepositoryMother.empty()
 
     def should_success_with_any_valid_json(self, client_app):

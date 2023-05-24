@@ -1,4 +1,4 @@
-from petisco import Container
+from petisco import Container, CrudRepository
 
 from app.src.task.shared.domain.task import Task
 from tests.mothers.task_mother import TaskMother
@@ -7,7 +7,7 @@ from tests.mothers.task_mother import TaskMother
 class TaskRepositoryMother:
     @staticmethod
     def empty():
-        repository = Container.get("task_repository")
+        repository = Container.get(CrudRepository, alias="task_repository")
         repository.clear()
         return repository
 

@@ -9,6 +9,9 @@ from app.src.task.delete.application.delete_task_controller import DeleteTaskCon
 from app.src.task.retrieve.application.retrieve_task_controller import (
     RetrieveTaskController,
 )
+from app.src.task.retrieve_all.application.retrieve_all_tasks_controller import (
+    RetrieveAllTasksController,
+)
 from app.src.task.update.application.update_task_controller import UpdateTaskController
 
 router = APIRouter(tags=["Tasks"])
@@ -23,6 +26,11 @@ async def create_task(task: TaskIn):
 async def retrieve_task(id: UUID):
     aggregate_id = Uuid(str(id))
     return RetrieveTaskController().execute(aggregate_id)
+
+
+@router.get("/tasks")
+async def retrieve_all_tasks():
+    return RetrieveAllTasksController().execute()
 
 
 @router.patch("/task")

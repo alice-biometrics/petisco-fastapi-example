@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import Optional
 
 from petisco import AggregateRoot, Uuid
 from pydantic.class_validators import validator
@@ -11,8 +10,8 @@ from app.src.task.shared.domain.events import TaskCreated
 class Task(AggregateRoot):
     name: constr(max_length=50)
     description: constr(max_length=200)
-    created_at: Optional[datetime] = None
-    labels: Optional[list[str]] = list()
+    created_at: datetime | None = None
+    labels: list[str] | None = list()
 
     @validator("aggregate_id", pre=True, always=True)
     def set_aggregate_id(cls, v):
@@ -23,7 +22,7 @@ class Task(AggregateRoot):
         return v or datetime.utcnow()
 
     @staticmethod
-    def create(name: str, description: str, aggregate_id: Optional[Uuid] = None):
+    def create(name: str, description: str, aggregate_id: Uuid | None = None):
         task = Task(name=name, description=description, aggregate_id=aggregate_id)
         task.record(TaskCreated())
         return task

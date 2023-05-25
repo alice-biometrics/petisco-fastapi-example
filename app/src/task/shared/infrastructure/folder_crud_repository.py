@@ -4,7 +4,6 @@ import shutil
 from os import listdir
 from os.path import isfile, join
 from pathlib import Path
-from typing import Dict, List
 
 from meiga import BoolResult, Error, Failure, Result, Success, isSuccess
 from meiga.decorators import meiga
@@ -26,7 +25,7 @@ class FolderTaskCrudRepository(CrudRepository[Task]):
         self.folder = folder
         os.makedirs(self.folder, exist_ok=True)
 
-    def _get_data(self) -> Dict[Uuid, Task]:
+    def _get_data(self) -> dict[Uuid, Task]:
         filenames = [f for f in listdir(self.folder) if isfile(join(self.folder, f))]
         data = {}
         for filename in filenames:
@@ -76,7 +75,7 @@ class FolderTaskCrudRepository(CrudRepository[Task]):
         self._remove(aggregate_id)
         return isSuccess
 
-    def retrieve_all(self) -> Result[List[AggregateRootType], Error]:
+    def retrieve_all(self) -> Result[list[AggregateRootType], Error]:
         data = self._get_data()
         return Success(list(data.values()))
 

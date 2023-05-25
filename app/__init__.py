@@ -5,12 +5,12 @@ TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 
 def read_application_latest_deploy(filename: str) -> datetime:
-    deploy_time = open(filename, "r").read().rstrip()
+    deploy_time = open(filename).read().rstrip()
     return datetime.strptime(deploy_time[:-6], TIME_FORMAT)
 
 
 def read_application_version(filename: str) -> str:
-    return open(filename, "r").read().rstrip()
+    return open(filename).read().rstrip()
 
 
 ROOT_PATH = os.path.abspath(os.path.dirname(__file__))

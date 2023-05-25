@@ -13,3 +13,4 @@ pytest-clarity==1.0.1
 pytest-ordering==0.6
 hypothesis==6.56.3
 setuptools>65.5.1
+pyupgrade==3.4.0

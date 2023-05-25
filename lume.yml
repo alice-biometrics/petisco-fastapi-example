@@ -43,7 +43,6 @@ steps:
   cz-changelog:
     run: cz changelog
 
-
 other_steps:
   local: lume.local.yml
   test: lume.test.yml

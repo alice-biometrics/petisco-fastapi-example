@@ -14,3 +14,4 @@ pytest-ordering==0.6
 hypothesis==6.56.3
 setuptools>65.5.1
 pyupgrade==3.4.0
+commitizen==3.2.2

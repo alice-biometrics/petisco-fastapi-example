@@ -1,6 +1,14 @@
 repos:
   - repo: local
     hooks:
+      - id: commitizen
+        name: My commitizen check
+        entry: cz
+        args: ['check', '--commit-msg-file', '.git/COMMIT_EDITMSG']
+        pass_filenames: false
+        language: system
+        stages: [commit-msg]
+
       - id: black
         name: black
         entry: black .

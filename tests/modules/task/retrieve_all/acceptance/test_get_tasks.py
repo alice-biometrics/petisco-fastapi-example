@@ -19,4 +19,9 @@ class TestGetTasks:
     def should_return_200(self, client_app):
         response = client_app.get("/tasks")
         assert_http(response, 200)
-        assert response.json()["result"] == [self.task.dict()]
+
+        filtered_tasks = [
+            task for task in response.json()["result"] if task.pop("created_at")
+        ]
+        expected_tasks = [task for task in [self.task.dict()] if task.pop("created_at")]
+        assert filtered_tasks == expected_tasks

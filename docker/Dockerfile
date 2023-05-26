@@ -1,9 +1,9 @@
-FROM python:3.9-slim as builder
+FROM python:3.10-slim as builder
 COPY requirements/requirements.txt /requirements.txt
 RUN pip install --user -r /requirements.txt \
   && rm -rf ~/.cache/pip
 
-FROM python:3.9-slim
+FROM python:3.10-slim
 LABEL maintainer="Alice Support <support@alicebiometrics.com>"
 WORKDIR /app
 COPY --from=builder /root/.local /root/.local

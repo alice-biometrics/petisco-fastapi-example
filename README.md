@@ -57,13 +57,6 @@ Try it and check documentation in [http://127.0.0.1:8000/docs](http://127.0.0.1:
 |-----------------------|---------------------------------------------------------------------------|
 | `(venv) $ lume -docker:build` | `(venv) $ docker build -t petisco-fastapi-example -f docker/Dockerfile .` |
 
-#### Run
-
-| lume                        | docker                                                                                |
-|-----------------------------|---------------------------------------------------------------------------------------|
-| `(venv) $ lume -docker:run` | `(venv) $ docker run -p 80:80 --name petisco-fastapi-example petisco-fastapi-example` |
-
-Try it and check documentation in [http://localhost:8000/docs](http://localhost:8000/docs)
 
 #### Use docker compose 
 

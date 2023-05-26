@@ -1,8 +1,8 @@
 steps:
   build:
     run: docker build -t petisco-fastapi-example -f docker/Dockerfile .
-  up:
-    run: docker run --name petisco-fastapi-example petisco-fastapi-example
+  rebuild:
+    run: docker build --no-cache -t petisco-fastapi-example -f docker/Dockerfile .
   compose-up:
     envs_file: env.yml
     run: docker-compose -f docker-compose.yml up -d

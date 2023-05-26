@@ -20,7 +20,7 @@ from petisco.base.domain.model.uuid import Uuid
 from app.src.task.shared.domain.task import Task
 
 
-class FolderTaskCrudRepository(CrudRepository[Task]):
+class FolderTaskRepository(CrudRepository[Task]):
     def __init__(self, folder: str):
         self.folder = folder
         os.makedirs(self.folder, exist_ok=True)

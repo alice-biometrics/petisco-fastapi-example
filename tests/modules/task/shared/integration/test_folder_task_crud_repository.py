@@ -3,19 +3,19 @@ from meiga.assertions import assert_failure, assert_success
 from petisco import AggregateAlreadyExistError, AggregateNotFoundError
 
 from app.src.task.shared.domain.task import Task
-from app.src.task.shared.infrastructure.folder_crud_repository import (
-    FolderTaskCrudRepository,
+from app.src.task.shared.infrastructure.folder_task_repository import (
+    FolderTaskRepository,
 )
 from tests.mothers.task_mother import TaskMother
 
 
 @pytest.mark.integration
 class TestFolderTaskCrudRepository:
-    repository: FolderTaskCrudRepository
+    repository: FolderTaskRepository
     task: Task
 
     def setup_method(self):
-        self.repository = FolderTaskCrudRepository("folder_task_database")
+        self.repository = FolderTaskRepository("folder_task_database")
         self.aggregate_root = TaskMother.any()
 
     def teardown_method(self):

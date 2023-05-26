@@ -75,7 +75,7 @@ class SqlTaskRepository(CrudRepository[Task]):
             if sql_task:
                 return Failure(AggregateNotFoundError(aggregate_id))
 
-            session.remove(sql_task)
+            session.delete(sql_task)
 
         return isSuccess
 
@@ -83,9 +83,9 @@ class SqlTaskRepository(CrudRepository[Task]):
         with self.session_scope() as session:
             query = select(SqlTask)
             sql_tasks = session.execute(query).all()
-            tasks = [sql_task.to_domain().values() for sql_task in sql_tasks]
+            tasks = [sql_task[0].to_domain() for sql_task in sql_tasks]
 
         return Success(tasks)
 
     def clear(self):
-        Databases().remove("sql-tasks")
+        Databases().clear_data()

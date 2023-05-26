@@ -33,7 +33,7 @@ class TestTaskUpdater:
 
         self.mock_labeler.execute.assert_called_once()
         self.mock_repository.update.assert_called_once()
-        self.mock_domain_event_bus.publish_list.assert_called_once()
+        self.mock_domain_event_bus.publish.assert_called_once()
 
     def should_failure_when_labeler_fails(self):
         self.mock_labeler.execute = Mock(return_value=isFailure)
@@ -49,7 +49,7 @@ class TestTaskUpdater:
 
         self.mock_labeler.execute.assert_called_once()
         self.mock_repository.update.assert_not_called()
-        self.mock_domain_event_bus.publish_list.assert_not_called()
+        self.mock_domain_event_bus.publish.assert_not_called()
 
     def should_failure_when_repository_fails(self):
         self.mock_repository.update = Mock(return_value=isFailure)
@@ -65,4 +65,4 @@ class TestTaskUpdater:
 
         self.mock_labeler.execute.assert_called_once()
         self.mock_repository.update.assert_called_once()
-        self.mock_domain_event_bus.publish_list.assert_not_called()
+        self.mock_domain_event_bus.publish.assert_not_called()

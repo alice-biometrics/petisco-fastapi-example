@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import Optional
 from uuid import UUID
 
 from petisco import Uuid
@@ -12,7 +11,7 @@ from app.src.task.shared.domain.task import Task
 class TaskIn(BaseModel):
     name: constr(max_length=50)
     description: constr(max_length=200)
-    id: Optional[UUID] = None
+    id: UUID | None = None
 
     def to_task(self) -> Task:
         return Task.create(

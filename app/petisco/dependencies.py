@@ -1,5 +1,3 @@
-from typing import List
-
 from petisco import Builder, CrudRepository, Dependency, InmemoryCrudRepository
 from petisco.extra.rabbitmq import get_rabbitmq_message_dependencies
 
@@ -13,7 +11,7 @@ from app.src.task.shared.infrastructure.folder_crud_repository import (
 )
 
 
-def dependencies_provider() -> List[Dependency]:
+def dependencies_provider() -> list[Dependency]:
     repositories = [
         Dependency(
             CrudRepository,

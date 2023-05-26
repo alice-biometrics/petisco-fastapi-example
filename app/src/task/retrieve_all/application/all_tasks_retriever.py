@@ -1,5 +1,3 @@
-from typing import List
-
 from meiga import Error, Result, Success
 from petisco import CrudRepository, UseCase
 
@@ -13,6 +11,6 @@ class AllTasksRetriever(UseCase):
     ):
         self.repository = repository
 
-    def execute(self) -> Result[List[Task], Error]:
+    def execute(self) -> Result[list[Task], Error]:
         tasks = self.repository.retrieve_all().unwrap_or_return()
         return Success(tasks)

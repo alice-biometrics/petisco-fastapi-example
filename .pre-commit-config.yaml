@@ -1,6 +1,14 @@
 repos:
   - repo: local
     hooks:
+      - id: commitizen
+        name: My commitizen check
+        entry: cz
+        args: ['check', '--commit-msg-file', '.git/COMMIT_EDITMSG']
+        pass_filenames: false
+        language: system
+        stages: [commit-msg]
+
       - id: black
         name: black
         entry: black .
@@ -25,3 +33,10 @@ repos:
         require_serial: true
         fail_fast: true
 
+      - id: pyupgrade
+        name: Pyupgrade
+        entry: pyupgrade --py310-plus
+        types: [ python ]
+        language: system
+        exclude: ^docs/.*$
+        fail_fast: true

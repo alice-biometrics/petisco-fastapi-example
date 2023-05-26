@@ -13,12 +13,12 @@ on:
 
 jobs:
   ci:
-    uses: alice-biometrics/actions/.github/workflows/lume-ci.yml@v1.11
+    uses: alice-biometrics/actions/.github/workflows/lume-ci.yml@v1.32
     with:
       language: python
       post_commands: test-property,test:e2e-local
     secrets:
       github_access_token: ${{ secrets.ALICE_GITHUB_ACCESS_TOKEN }}
       gke_project: ${{ secrets.GKE_PROJECT_STAGING }}
-      gke_key: ${{ secrets.GKE_KEY_STAGING }}
-
+      workload_identity: ${{ secrets.WORKLOAD_IDENTITY_STAGING }}
+      service_account: ${{ secrets.GHACTIONS_ACCOUNT_STAGING }}

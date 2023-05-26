@@ -22,5 +22,5 @@ class TaskUpdater(UseCase):
     ) -> BoolResult:
         task = self.labeler.execute(task).unwrap_or_return()
         self.repository.update(task).unwrap_or_return()
-        self.domain_event_bus.publish_list(task.pull_domain_events())
+        self.domain_event_bus.publish(task.pull_domain_events())
         return isSuccess

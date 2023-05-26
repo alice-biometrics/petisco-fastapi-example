@@ -66,7 +66,7 @@ Use docker compose to run the service and its dependencies locally
 |--------------------------|---------------------------------------------------------------------------|
 | `(venv) $ lume -docker:compose-up` | `(venv) $ docker-compose -f docker-compose.yml up -d` |
 
-Try it and check documentation in [http://localhost:8000/docs](http://localhost:8000/docs)
+Try it and check documentation in [http://localhost:80/docs](http://localhost:80/docs)
 
 #### Check RabbitMQ <img src="https://github.com/alice-biometrics/custom-emojis/blob/master/images/rabbitmq.png" width="18">
 

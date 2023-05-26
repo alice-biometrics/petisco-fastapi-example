@@ -2,6 +2,7 @@ import pytest
 from fastapi.exceptions import HTTPException
 from hypothesis import given
 from hypothesis import strategies as st
+from petisco.extra.fastapi import as_fastapi
 
 from app.src.task.create.application.create_task_controller import CreateTaskController
 from tests.mothers.task_mother import TaskMother
@@ -21,6 +22,7 @@ class TestPropertyCreateTaskController:
         task = TaskMother.random(name, description)
         try:
             result = CreateTaskController().execute(task)
+            result = as_fastapi(result)
             assert isinstance(result, dict)
         except HTTPException as exc:
             assert exc.status_code == 422

@@ -43,8 +43,8 @@ class TestFolderTaskRepository:
         assert_success(
             result,
             value_is_instance_of=Task,
-            value_is_equal_to=self.aggregate_root,
         )
+        assert result.value.model_dump() == self.aggregate_root.model_dump()
 
     def should_fail_when_retrieve_and_not_found(self):
         result = self.repository.retrieve(self.aggregate_root.aggregate_id)
@@ -66,8 +66,8 @@ class TestFolderTaskRepository:
         assert_success(
             result,
             value_is_instance_of=list,
-            value_is_equal_to=[self.aggregate_root],
         )
+        assert result.value[0].model_dump() == self.aggregate_root.model_dump()
 
     def should_success_when_retrieve_all_with_several_entries(self):
         self._repository_with_n_aggregate_roots(5)

@@ -1,6 +1,7 @@
 from datetime import datetime
 
-from petisco import SqlBase, Uuid
+from petisco import Uuid
+from petisco.extra.sqlalchemy import SqlBase
 from sqlalchemy import Column, DateTime, Integer, String
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.sql import func

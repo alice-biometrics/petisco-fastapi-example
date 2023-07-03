@@ -1,27 +1,36 @@
-from collections.abc import Callable
-from typing import ContextManager
+# from collections.abc import Callable
+# from typing import ContextManager
 
 from meiga import BoolResult, Error, Failure, Result, Success, isSuccess
 from meiga.decorators import meiga
-from petisco import Databases
-from petisco.base.application.patterns.crud_repository import CrudRepository
-from petisco.base.domain.errors.defaults.already_exists import (
+from petisco import (
     AggregateAlreadyExistError,
+    AggregateNotFoundError,
+    CrudRepository,
+    Uuid,
+    databases,
 )
-from petisco.base.domain.errors.defaults.not_found import AggregateNotFoundError
-from petisco.base.domain.model.uuid import Uuid
+from petisco.extra.sqlalchemy import SqlDatabase, SqlSessionScope
+
+# from petisco.base.application.patterns.crud_repository import CrudRepository
+# from petisco.base.domain.errors.defaults.already_exists import (
+#     AggregateAlreadyExistError,
+# )
+# from petisco.base.domain.errors.defaults.not_found import AggregateNotFoundError
+# from petisco.base.domain.model.uuid import Uuid
 from sqlalchemy import select
-from sqlalchemy.orm import Session
 
 from app.src.task.shared.domain.task import Task
 from app.src.task.shared.infrastructure.sql.sql_task import SqlTask
 
 
 class SqlTaskRepository(CrudRepository[Task]):
-    session_scope: Callable[..., ContextManager[Session]]
+    session_scope: SqlSessionScope
 
     def __init__(self):
-        self.session_scope = Databases.get_session_scope("sql-tasks")
+        self.session_scope = databases.get(
+            SqlDatabase, alias="sql-tasks"
+        ).get_session_scope()
 
     @meiga
     def save(self, task: Task) -> BoolResult:
@@ -30,7 +39,7 @@ class SqlTaskRepository(CrudRepository[Task]):
             query = select(SqlTask).where(
                 SqlTask.aggregate_id == task.aggregate_id.value
             )
-            sql_task = session.execute(query).first()
+            sql_task = session.execute(query).one_or_none()
 
             if sql_task:
                 return Failure(AggregateAlreadyExistError(task.aggregate_id))
@@ -44,11 +53,12 @@ class SqlTaskRepository(CrudRepository[Task]):
     def retrieve(self, aggregate_id: Uuid) -> Result[Task, Error]:
         with self.session_scope() as session:
             query = select(SqlTask).where(SqlTask.aggregate_id == aggregate_id.value)
-            sql_task = session.execute(query).first()
+            sql_task = session.execute(query).one_or_none()
 
-            if sql_task:
+            if sql_task is None:
                 return Failure(AggregateNotFoundError(aggregate_id))
-            task = sql_task.to_domain()
+
+            task = sql_task[0].to_domain()
 
             return Success(task)
 
@@ -57,9 +67,9 @@ class SqlTaskRepository(CrudRepository[Task]):
             query = select(SqlTask).where(
                 SqlTask.aggregate_id == task.aggregate_id.value
             )
-            sql_task = session.execute(query).first()
+            sql_task = session.execute(query).one_or_none()
 
-            if sql_task:
+            if sql_task is None:
                 return Failure(AggregateNotFoundError(task.aggregate_id))
 
             sql_task = SqlTask.from_domain(task)
@@ -70,12 +80,12 @@ class SqlTaskRepository(CrudRepository[Task]):
     def remove(self, aggregate_id: Uuid) -> BoolResult:
         with self.session_scope() as session:
             query = select(SqlTask).where(SqlTask.aggregate_id == aggregate_id.value)
-            sql_task = session.execute(query).first()
+            sql_task = session.execute(query).one_or_none()
 
-            if sql_task:
+            if sql_task is None:
                 return Failure(AggregateNotFoundError(aggregate_id))
 
-            session.delete(sql_task)
+            session.delete(sql_task[0])
 
         return isSuccess
 
@@ -88,4 +98,4 @@ class SqlTaskRepository(CrudRepository[Task]):
         return Success(tasks)
 
     def clear(self):
-        Databases().clear_data()
+        databases.clear_database(SqlDatabase, alias="sql-tasks")

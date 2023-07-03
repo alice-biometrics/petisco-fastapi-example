@@ -1,6 +1,6 @@
 import os
 
-from petisco import ApplicationConfigurer, Databases
+from petisco import ApplicationConfigurer, databases
 from petisco.extra.sqlalchemy import MySqlConnection, SqlDatabase, SqliteConnection
 
 DATABASE_NAME = "sql-tasks"
@@ -16,9 +16,8 @@ class DatabasesConfigurer(ApplicationConfigurer):
         else:
             connection = MySqlConnection.from_environ()
 
-        sql_database = SqlDatabase(name=DATABASE_NAME, connection=connection)
+        sql_database = SqlDatabase(alias=DATABASE_NAME, connection=connection)
 
-        databases = Databases()
         databases.add(sql_database)
         databases.initialize()
 

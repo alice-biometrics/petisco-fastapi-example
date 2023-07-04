@@ -3,19 +3,19 @@ from meiga.assertions import assert_failure, assert_success
 from petisco import AggregateAlreadyExistError, AggregateNotFoundError
 
 from app.src.task.shared.domain.task import Task
-from app.src.task.shared.infrastructure.folder_crud_repository import (
-    FolderTaskCrudRepository,
+from app.src.task.shared.infrastructure.folder_task_repository import (
+    FolderTaskRepository,
 )
 from tests.mothers.task_mother import TaskMother
 
 
 @pytest.mark.integration
-class TestFolderTaskCrudRepository:
-    repository: FolderTaskCrudRepository
+class TestFolderTaskRepository:
+    repository: FolderTaskRepository
     task: Task
 
     def setup_method(self):
-        self.repository = FolderTaskCrudRepository("folder_task_database")
+        self.repository = FolderTaskRepository("folder_task_database")
         self.aggregate_root = TaskMother.any()
 
     def teardown_method(self):
@@ -43,8 +43,8 @@ class TestFolderTaskCrudRepository:
         assert_success(
             result,
             value_is_instance_of=Task,
-            value_is_equal_to=self.aggregate_root,
         )
+        assert result.value.model_dump() == self.aggregate_root.model_dump()
 
     def should_fail_when_retrieve_and_not_found(self):
         result = self.repository.retrieve(self.aggregate_root.aggregate_id)
@@ -66,8 +66,8 @@ class TestFolderTaskCrudRepository:
         assert_success(
             result,
             value_is_instance_of=list,
-            value_is_equal_to=[self.aggregate_root],
         )
+        assert result.value[0].model_dump() == self.aggregate_root.model_dump()
 
     def should_success_when_retrieve_all_with_several_entries(self):
         self._repository_with_n_aggregate_roots(5)

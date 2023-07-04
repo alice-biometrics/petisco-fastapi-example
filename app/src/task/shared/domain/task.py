@@ -1,8 +1,7 @@
 from datetime import datetime
 
 from petisco import AggregateRoot, Uuid
-from pydantic.class_validators import validator
-from pydantic.types import constr
+from pydantic import constr, validator
 
 from app.src.task.shared.domain.events import TaskCreated
 

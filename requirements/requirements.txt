@@ -1,3 +1,3 @@
-petisco[fastapi,sqlalchemy,elastic,rabbitmq,slack,redis]==2.0.0-rc0
-uvicorn>=0.22.0
+petisco[fastapi,sqlalchemy,elastic,rabbitmq,slack,redis]==2.0.0-rc10
+uvicorn[standard]>=0.22.0
 httpx>=0.24.1

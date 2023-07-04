@@ -7,6 +7,7 @@ from app import (
     ORGANIZATION,
 )
 from app.fastapi import fastapi_configurer
+from app.petisco.configurers import configurers
 from app.petisco.dependencies import dependencies_provider
 
 application = FastApiApplication(
@@ -15,5 +16,6 @@ application = FastApiApplication(
     organization=ORGANIZATION,
     deployed_at=APPLICATION_LATEST_DEPLOY,
     dependencies_provider=dependencies_provider,
+    configurers=configurers,
     fastapi_configurer=fastapi_configurer,
 )

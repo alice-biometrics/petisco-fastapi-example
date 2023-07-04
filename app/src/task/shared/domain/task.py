@@ -12,10 +12,14 @@ class Task(AggregateRoot):
     created_at: datetime | None = None
     labels: list[str] | None = list()
 
+    # TODO[pydantic]: We couldn't refactor the `validator`, please replace it by `field_validator` manually.
+    # Check https://docs.pydantic.dev/dev-v2/migration/#changes-to-validators for more information.
     @validator("aggregate_id", pre=True, always=True)
     def set_aggregate_id(cls, v):
         return v or Uuid.v4()
 
+    # TODO[pydantic]: We couldn't refactor the `validator`, please replace it by `field_validator` manually.
+    # Check https://docs.pydantic.dev/dev-v2/migration/#changes-to-validators for more information.
     @validator("created_at", pre=True, always=True)
     def set_created_at(cls, v):
         return v or datetime.utcnow()

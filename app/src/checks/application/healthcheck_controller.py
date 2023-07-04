@@ -1,13 +1,12 @@
 from meiga import Error, Result, Success
-from petisco import unwrap_result_handler
 from petisco.extra.fastapi import FastAPIController
+from pydantic import ConfigDict
 
 from app import APPLICATION_NAME, APPLICATION_VERSION
 
 
 class HealthCheckController(FastAPIController):
-    class Config:
-        success_handler: unwrap_result_handler
+    model_config = ConfigDict()
 
     def execute(self) -> Result[dict, Error]:
         healthcheck = {
